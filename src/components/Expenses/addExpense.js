@@ -3,7 +3,12 @@ import { useState } from "react";
 import classes from './Expenses.css';
 import { postRequest } from "../../api/postRequest";
 
-function addExpense({ modelId, jobId }) {
+function AddExpense({ modelId, jobId }) {
+  const [date, setDate] = useState("");
+  const [text, setText] = useState("");
+  const [amount, setAmount] = useState(0);
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,12 +26,6 @@ function addExpense({ modelId, jobId }) {
     });
 
   }
-
-
-  const [date, setDate] = useState("");
-  const [text, setText] = useState("");
-  const [amount, setAmount] = useState(0);
-
 
   return (
     <form className={classes.newJobForm} onSubmit={(e) => handleSubmit(e)}>
@@ -74,4 +73,4 @@ function addExpense({ modelId, jobId }) {
   )
 }
 
-export default addExpense
+export default AddExpense

@@ -4,11 +4,12 @@ import { FaMinusCircle, FaPlusCircle } from 'react-icons/fa';
 import { Table } from 'react-bootstrap';
 import { getRequest } from "../../api/getRequest";
 import { deleteRequest } from "../../api/deleteRequest";
-import { Button } from "bootstrap";
+import { useHistory } from "react-router-dom";
 
 function SeeJobs() {
     const [jobsList, setJobsList] = useState([]);
     const getJobs_URL = "api/jobs"
+    const history = useHistory();
 
     useEffect(() => {
         console.log("Go for get request!");
@@ -21,14 +22,16 @@ function SeeJobs() {
     }, []);
 
     const handleDetails = async (e) => {
-
         console.log("Details Clicked!")
+        
+        history.push("/ExpensesPage");
+
+
     }
     const handleDelete = (id) => {
         console.log("Delete Clicked! With id: "+id);
-
         var url = "api/jobs/"+id;
-        console.log("url is: "+ url);
+
         deleteRequest({apiEndPoint: url}).then(status => {
                 console.log("status for delete request: "+ status);
                 if(status == 200){ // successfully deleted
