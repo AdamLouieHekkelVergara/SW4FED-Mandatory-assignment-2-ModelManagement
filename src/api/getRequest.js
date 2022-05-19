@@ -6,17 +6,15 @@ export async function getRequest({ apiEndPoint }) {
 
 
     var url = "https://localhost:7181/" + apiEndPoint;
-    var response = await fetch(url, {
+    let response = await fetch(url, {
         method: 'GET', // Or DELETE
         credentials: 'include',
         headers: {
             'Authorization': 'Bearer ' + localStorage.getItem("token"),
             'Content-Type': 'application/json'
         }
-    }).then(responseJson => {
-        this.response = responseJson;
-    })
-        .catch(error => alert('Something bad happened: ' + error));
-        console.log(response);
-    return response;
+    });
+    if(!response.ok){    alert('Something bad happened: ' + response)}
+    let body = await response.json();
+    return body;
 }
