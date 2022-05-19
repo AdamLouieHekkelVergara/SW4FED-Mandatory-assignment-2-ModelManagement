@@ -1,9 +1,10 @@
 import React from "react";
 import { useRef, useState, useEffect, useContext } from "react";
-import classes from "./SeeJobs.module.css";
-import { FaMinusCircle } from 'react-icons/fa';
-
+import { FaMinusCircle, FaPlusCircle } from 'react-icons/fa';
+import { Table } from 'react-bootstrap';
 import { getRequest } from "../../api/getRequest";
+import { deleteRequest } from "../../api/deleteRequest";
+import { Button } from "bootstrap";
 
 function SeeJobs() {
     const [jobsList, setJobsList] = useState([]);
@@ -19,24 +20,70 @@ function SeeJobs() {
             });
     }, []);
 
+    const handleDetails = async (e) => {
+
+        console.log("Details Clicked!")
+    }
+    const handleDelete = (id) => {
+        console.log("Delete Clicked! With id: "+id);
+
+        var url = "api/jobs/"+id;
+        console.log("url is: "+ url);
+        deleteRequest({apiEndPoint: url}).then(status => {
+                console.log("status for delete request: "+ status);
+                if(status == 200){ // successfully deleted
+                    const newJobList = jobsList.filter((job)=> job.jobId !== id);
+                    setJobsList(newJobList);
+                }
+                    
+        });;
+          
+    }
+
     return (
         <div>
-            <h3>Alle Jobs</h3>
-            <ul className={classes.unorderedlist}>
-                <lh className={classes.lh}>Fruits I Like:</lh>
-                <lh className={classes.lh}>Apples</lh>
-                <lh className={classes.lh}>Bananas</lh>
-                <lh className={classes.lh}>Oranges</lh>
-                {jobsList.map(item => {
-                    return <li key={item.jobId} className={classes.listitem}>
-                        <label>{item.customer}</label>
-                        <label>{item.startDate}</label>
-                        <label>{item.days}</label>
-                        <label>{item.location}</label>
-                        <FaMinusCircle role="button"></FaMinusCircle>
-                    </li>;
-                })}
-            </ul>
+            <h3>Synlige Jobs</h3>
+            <Table striped hover>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Customer</th>
+                        <th>Start date</th>
+                        <th>Location</th>
+                        <th>Days</th>
+                        <th></th>
+                        <th></th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {jobsList.map(item => {
+                        return <tr key={item.jobId}>
+                            <td>{item.jobId}</td>
+                            <td>{item.customer}</td>
+                            <td>{item.startDate}</td>
+                            <td>{item.location}</td>
+                            <td>{item.days}</td>
+                            <td>
+                                <FaMinusCircle
+                                    onClick={() => handleDelete(item.jobId)}
+                                    role="button"
+                                    tabIndex="0"
+                                />
+                            </td>
+                            <td>
+                            <FaPlusCircle
+                                    onClick={() => handleDetails(item.jobId)}
+                                    role="button"
+                                    tabIndex="0"
+                                />
+
+                            </td>
+                        </tr>;
+                    })}
+                </tbody>
+
+            </Table>
         </div>
     )
 }
