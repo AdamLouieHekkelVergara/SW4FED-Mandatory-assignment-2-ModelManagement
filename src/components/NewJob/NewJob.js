@@ -30,11 +30,16 @@ function NewJob() {
     const [comments, setComments] = useState("");
 
     return (
-        <Form>
+        <Form onSubmit={(e) => handleSubmit(e)}>
             <Row className="mb-3">
                 <Form.Group as={Col} controlId="formCustomer">
                     <Form.Label>Customer</Form.Label>
-                    <Form.Control placeholder="Peter Jakobsen" />
+                    <Form.Control
+                    autoFocus
+                    id="customer"
+                    value={customer}
+                    onChange={(e) => setCustomer(e.target.value)}      
+                    placeholder="Peter Jakobsen" />
                 </Form.Group>
             </Row>
 
