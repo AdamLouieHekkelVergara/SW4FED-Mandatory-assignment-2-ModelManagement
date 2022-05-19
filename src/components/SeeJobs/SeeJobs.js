@@ -21,10 +21,10 @@ function SeeJobs() {
             });
     }, []);
 
-    const handleDetails = async (e) => {
-        console.log("Details Clicked!")
+    const handleDetails = (id) => {
+        console.log("Details Clicked! " + id);
         
-        history.push("/ExpensesPage");
+        history.push("/ExpensesPage", { jobId: id });
 
 
     }

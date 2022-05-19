@@ -34,7 +34,7 @@ function ExpensesList() {
                 </thead>
                 <tbody>
                     {expenseList.map((item, index) => {
-                        return <tr key={item.jobId}>
+                        return <tr key={index}>
                             <td>{index + 1}</td>
                             <td>{item.date}</td>
                             <td>{item.amount}</td>

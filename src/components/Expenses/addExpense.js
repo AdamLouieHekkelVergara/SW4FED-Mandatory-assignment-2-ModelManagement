@@ -4,7 +4,7 @@ import { postRequest } from "../../api/postRequest";
 import { Form, Button } from 'react-bootstrap';
 import jwt_decode from 'jwt-decode';
 
-function AddExpense({ modelId, jobId }) {
+function AddExpense({jobId}) {
   const [date, setDate] = useState("");
   const [text, setText] = useState("");
   const [amount, setAmount] = useState(0);
@@ -13,19 +13,21 @@ function AddExpense({ modelId, jobId }) {
     e.preventDefault();
     console.log("Handle submit!");
     var token = localStorage.getItem("token");
-
-/*     let object = {
-      "modelId": modelId,
-      "jobId": jobId,
-      "date": date,
-      "text": text,
-      "amount": amount
-    }
-    postRequest({
-      apiEndPoint: "api/Expenses",
-      object: object
-    });
-    window.location.reload(true); */
+    var decoded = jwt_decode(token);
+    var modelId = decoded.ModelId;
+    console.log("modelId: "+ modelId + "jobId: "+ jobId);
+         let object = {
+          "modelId": modelId,
+          "jobId": jobId,
+          "date": date,
+          "text": text,
+          "amount": amount
+        }
+        postRequest({
+          apiEndPoint: "api/Expenses",
+          object: object
+        });
+        window.location.reload(true); 
   }
 
   return (
