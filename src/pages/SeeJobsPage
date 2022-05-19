@@ -1,0 +1,12 @@
+import React from 'react'
+import NewManager from '../components/SeeJobs/SeeJobs';
+
+const SeeJobsPage = () => {
+  return (
+  <div>
+    <SeeJobs/>
+  </div>
+  )
+}
+
+export default SeeJobsPage

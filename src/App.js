@@ -8,6 +8,7 @@ import AuthPage from "./pages/AuthPage";
 import HomePage from "./pages/HomePage";
 import NewJobPage from "./pages/NewJobPage";
 import NewManagerPage from "./pages/NewManagerPage";
+import SeeJobsPage from "./pages/SeeJobsPage";
 
 function App() {
   return (
@@ -36,6 +37,9 @@ function App() {
         </Route>
         <Route path="/new-manager">
           <NewManagerPage />
+        </Route>
+        <Route path="/seeJobs">
+          <SeeJobsPage />
         </Route>
       </Switch>
     </Layout>
