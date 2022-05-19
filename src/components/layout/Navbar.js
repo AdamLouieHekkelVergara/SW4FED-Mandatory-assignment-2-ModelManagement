@@ -37,6 +37,12 @@ const Navbar = () => {
               Tilføj Manager
             </NavLink>
             </li>
+            
+          <li>
+            <NavLink to="/seeJobs" activeClassName={classes.active}>
+              Se alle jobs
+            </NavLink>
+          </li>
         </ul>
       </nav>
     </header>
