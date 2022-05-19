@@ -1,6 +1,5 @@
 import React from 'react'
-import NewManager from '../components/SeeJobs/SeeJobs';
-
+import SeeJobs from '../components/SeeJobs/SeeJobs'
 const SeeJobsPage = () => {
   return (
   <div>

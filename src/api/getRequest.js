@@ -2,7 +2,6 @@
 export async function getRequest({ apiEndPoint }) {
     console.log("get request!");
     console.log("end point is: " + apiEndPoint);
-    console.log("object is: " + object);
     console.log("\n");
 
 

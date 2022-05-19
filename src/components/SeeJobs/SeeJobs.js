@@ -1,11 +1,10 @@
 import React from "react";
-import axios from "../../api/axios";
 import { useRef, useState, useEffect, useContext } from "react";
 import classes from "./SeeJobs.module.css";
 import { getRequest } from "../../api/getRequest";
 
-export default function SeeJobs() {
-    const [jobs, getJobs] = useState('');
+function SeeJobs() {
+    const [jobs, setJobs] = useState('');
     const getJobs_URL = "api/jobs"
 
     useEffect(() => {
@@ -24,3 +23,4 @@ return(
     </main>
 )
 }
+export default SeeJobs
