@@ -7,6 +7,7 @@ import Layout from "./components/layout/Layout";
 import AuthPage from "./pages/AuthPage";
 import HomePage from "./pages/HomePage";
 import NewJobPage from "./pages/NewJobPage";
+import NewManagerPage from "./pages/NewManagerPage";
 
 function App() {
   return (
@@ -32,6 +33,9 @@ function App() {
         </Route>
         <Route path="/NewJobPage">
           <NewJobPage />
+        </Route>
+        <Route path="/new-manager">
+          <NewManagerPage />
         </Route>
       </Switch>
     </Layout>
