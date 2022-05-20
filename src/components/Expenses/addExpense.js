@@ -25,7 +25,6 @@ function AddExpense({ jobId }) {
     }
     postRequest({
       apiEndPoint: "api/Expenses",
-      object: object
     });
     window.location.reload(true);
   }

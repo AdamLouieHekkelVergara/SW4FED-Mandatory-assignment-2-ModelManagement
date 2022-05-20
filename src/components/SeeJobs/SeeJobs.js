@@ -8,14 +8,13 @@ import { useHistory } from "react-router-dom";
 
 function SeeJobs() {
     const [jobsList, setJobsList] = useState([]);
-    const getJobs_URL = "api/jobs"
+    const getJobs_URL = "api/Jobs";
     const history = useHistory();
 
     useEffect(() => {
         console.log("Go for get request!");
         getRequest({ apiEndPoint: getJobs_URL })
             .then(value => {
-                console.log("value:");
                 console.log(value);
                 setJobsList(value);
             });
