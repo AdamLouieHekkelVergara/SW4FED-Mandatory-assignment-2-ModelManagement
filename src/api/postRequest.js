@@ -6,13 +6,15 @@ export async function postRequest({ apiEndPoint, object }) {
     console.log("end point is: " + apiEndPoint);
     console.log("object is: " + object);
     console.log("\n");
-
+    var postBody = null;
+    if(object !== undefined){
+        postBody = JSON.stringify(object)
+    }
     
     var url = "https://localhost:7181/" + apiEndPoint;
     await fetch(url, {
         method: 'POST', // Or PUT
-        body: JSON.stringify(object
-        ), // assumes your data is in a
+        body: postBody, // assumes your data is in a
         // form object on your instance.
         credentials: 'include',
         headers: {

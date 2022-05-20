@@ -5,9 +5,10 @@ import { Table } from 'react-bootstrap';
 import { getRequest } from "../../api/getRequest";
 import { postRequest } from "../../api/postRequest";
 
-function ModelList() {
+function AddModelToJob({jobId}) {
     const [modelList, setModelList] = useState([]);
     const getModels_URL = "api/models";
+    const postModelToJob_URL = "api/jobs/"+jobId+"/model/";
 
     useEffect(() => {
         getRequest({ apiEndPoint: getModels_URL })
@@ -19,6 +20,12 @@ function ModelList() {
 
 
     const handleAdd = (id) => {
+        console.log("Add Clicked! " + id);
+        console.log(postModelToJob_URL+id);
+         postRequest({
+          apiEndPoint: postModelToJob_URL+id
+        });
+        window.location.reload(true); 
 
     }
 
@@ -56,4 +63,5 @@ function ModelList() {
 </div>
   )
 }
-export default ModelList
+
+export default AddModelToJob
