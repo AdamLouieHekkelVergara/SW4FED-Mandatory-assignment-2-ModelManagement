@@ -1,4 +1,5 @@
 import classes from "./AuthForm.module.css";
+import { Redirect } from "react-router-dom";
 import { useRef, useState, useEffect, useContext } from "react";
 import AuthContext from "../../context/AuthProvider";
 import axios from "../../api/axios";
@@ -54,6 +55,10 @@ const AuthForm = () => {
     }
   };
 
+  const logoutHandler = () =>{
+    localStorage.setItem.token(null);
+  }
+
   /*
 async login() {
 let url = "https://localhost:44368/api/account/login";
@@ -88,9 +93,8 @@ return;
         <section>
           <h1>Du er logget ind</h1>
           <br />
-          <p>
-            <a href="/">Gå til forsiden</a>
-          </p>
+          
+          <Redirect to="/" />
         </section>
       ) : (
         <section className={classes.auth}>
@@ -114,6 +118,8 @@ return;
                 onChange={(e) => setUser(e.target.value)}
                 value={email}
                 required
+                placeholder="boss@m.dk"
+                
               />
             </div>
             <div className={classes.control}>
@@ -124,6 +130,7 @@ return;
                 onChange={(e) => setPwd(e.target.value)}
                 value={password}
                 required
+                placeholder="asdfQWER"
               />
             </div>
             <div className={classes.actions}>
