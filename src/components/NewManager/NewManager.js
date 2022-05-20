@@ -37,6 +37,7 @@ const NewManager = () => {
         }
       );
       console.log(JSON.stringify(response?.data));
+      alert('Manager has been added');
 
     } catch (err) {     
      
@@ -103,7 +104,9 @@ const NewManager = () => {
         </div>
         
         <div className={classes.actions}>
-          <button>Opret</button>
+                <button variant="primary" type="submit">
+                    Opret
+                </button>
         </div>
       </form>
     </section>

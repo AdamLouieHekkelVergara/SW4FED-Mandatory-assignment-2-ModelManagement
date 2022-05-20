@@ -19,7 +19,7 @@ function NewJob() {
             apiEndPoint: "api/Jobs",
             object: object
         });
-
+        alert('A job has been created')
     }
 
     const [customer, setCustomer] = useState("");

@@ -58,6 +58,7 @@ const NewModel = () => {
         }
       );
       console.log(JSON.stringify(response?.data));
+      alert('Adding a model was successfull');
 
     } catch (err) {     
      
@@ -258,7 +259,9 @@ const NewModel = () => {
         </div>
 
         <div className={classes.actions}>
-          <button>Opret</button>
+            <button variant="primary" type="submit">
+                    Opret
+            </button>
         </div>
       </form>
     </section>
