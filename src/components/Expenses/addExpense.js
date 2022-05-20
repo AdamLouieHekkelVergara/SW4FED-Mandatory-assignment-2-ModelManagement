@@ -47,14 +47,16 @@ function AddExpense({ jobId }) {
               value={amount}
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="my_multiselect_field">
+
+
+{/*           <Form.Group className="mb-3" controlId="my_multiselect_field">
             <Form.Label>My multiselect (hold ctrl for multi select) </Form.Label>
             <Form.Control as="select" multiple={true} >
               <option value="field1">Field 1</option>
               <option value="field2">Field 2</option>
               <option value="field3">Field 3</option>
             </Form.Control>
-          </Form.Group>
+          </Form.Group> */}
 
 
           <Form.Group className="mb-3" controlId="formDate">

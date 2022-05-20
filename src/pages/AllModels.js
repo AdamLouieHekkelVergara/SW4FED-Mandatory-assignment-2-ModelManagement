@@ -1,9 +1,11 @@
 import React from "react";
+import ModelList from '../components/NewModel/ModelList'
+
 
 const AllModels = () => {
   return (
     <div>
-      <h1>The All Models Page</h1>
+      <ModelList/>
     </div>
   );
 };

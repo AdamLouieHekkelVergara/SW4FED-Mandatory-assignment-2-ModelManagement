@@ -25,8 +25,6 @@ function SeeJobs() {
         console.log("Details Clicked! " + id);
         
         history.push("/ExpensesPage", { jobId: id });
-
-
     }
     const handleDelete = (id) => {
         console.log("Delete Clicked! With id: "+id);
