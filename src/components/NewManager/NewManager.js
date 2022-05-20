@@ -6,13 +6,11 @@ import classes from "./NewManager.module.css";
 const Create_Manager_URL = "api/managers"
 const NewManager = () => {
   const [errMsg, setErrMsg] = useState("");
-  const [checked] = React.useState(true);
 
   const [firstName, setFirstname] = useState("");
   const [lastName, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPwd] = useState("");
-  const [manager, setManager] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,7 +23,6 @@ const NewManager = () => {
                 firstName: firstName,
                 lastName: lastName,
                 email: email,
-                manager: manager,
                 password: password
               }
         ),
@@ -91,15 +88,6 @@ const NewManager = () => {
             onChange={(e) => setPwd(e.target.value)}
             value={password}
             
-          />
-        </div>
-
-        
-        <div className={classes.control}>
-          <label htmlFor="manager">Manager</label>
-          <input 
-          type="checkbox"
-          checked={checked}
           />
         </div>
         
