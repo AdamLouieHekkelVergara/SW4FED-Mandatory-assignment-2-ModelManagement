@@ -1,5 +1,5 @@
 import React from "react";
-import { useRef, useState, useEffect, useContext } from "react";
+import { useState, useEffect} from "react";
 import { FaMinusCircle, FaPlusCircle, FaInfoCircle } from 'react-icons/fa';
 import { Table } from 'react-bootstrap';
 import { getRequest } from "../../api/getRequest";
@@ -36,7 +36,7 @@ function SeeJobs() {
 
         deleteRequest({apiEndPoint: url}).then(status => {
                 console.log("status for delete request: "+ status);
-                if(status == 200){ // successfully deleted
+                if(status === 200){ // successfully deleted
                     const newJobList = jobsList.filter((job)=> job.jobId !== id);
                     setJobsList(newJobList);
                 }

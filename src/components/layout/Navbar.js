@@ -1,5 +1,5 @@
 
-import { Nav, NavDropdown, NavItem } from "react-bootstrap";
+import {NavDropdown} from "react-bootstrap";
 import { NavLink, useHistory } from "react-router-dom";
 
 import classes from "./Navbar.module.css";
@@ -7,7 +7,7 @@ import classes from "./Navbar.module.css";
 const Navbar = () => {
   const history = useHistory();
   function logOut() {
-    localStorage.clear();
+    localStorage.clear(); // clear the token from local storage.
     history.push('/auth')
     alert('Logged out');
   }

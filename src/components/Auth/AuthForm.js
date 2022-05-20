@@ -3,7 +3,14 @@ import { Redirect } from "react-router-dom";
 import { useRef, useState, useEffect, useContext } from "react";
 import AuthContext from "../../context/AuthProvider";
 import axios from "../../api/axios";
+import jwt_decode from 'jwt-decode';
+import { loginRequest } from "../../api/loginRequest";
+
+
 const LOGIN_URL = "/api/Account/login";
+
+
+
 
 const AuthForm = () => {
   const { setAuth } = useContext(AuthContext);
@@ -26,64 +33,27 @@ const AuthForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const response = await axios.post(
-        LOGIN_URL,
-        JSON.stringify({ email: email, password: password }),
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
-      );
+    var object = {
+      email: email,
+      password: password
+    }
 
-      let token = await response?.data;
-      console.log(token);
-      localStorage.setItem("token", token.jwt);
-      console.log(localStorage.getItem("token"));
-      setSuccess(true);
-    } catch (err) {
-      if (!err?.response) {
-        setErrMsg("No Server Response");
-      } else if (err.response?.status === 400) {
+    var response = loginRequest({
+      object: object
+    }).then(response => {
+      if (response.ok) {
+        setSuccess(true);
+      }
+      else if (response.status === 400) {
         setErrMsg("Unauthorized");
-      } else if (err.response?.status === 401) {
+      } else if (response.status === 401) {
         setErrMsg("Unauthorized");
       } else {
         setErrMsg("Login Failed");
       }
-      errRef.current.focus();
-    }
+    });
   };
 
-  
-
-  /*
-async login() {
-let url = "https://localhost:44368/api/account/login";
-try {
-let response = await fetch(url, {
-method: "POST",
-body: JSON.stringify(this.form), // Assumes data is in an object called form
-headers: new Headers({
-"Content-Type": "application/json"
-})
-});
-if (response.ok) {
-let token = await response.json();
-localStorage.setItem("token", token.jwt);
-// Change view to some other component // …
-} else {
-alert("Server returned: " + response.statusText);
-}
-} catch (err) {
-alert("Error: " + err);
-}
-return;
-*/
-  //-------------------------------------------------
-  //Manager: boss@m.dk  asdfQWER
-  //Model: nc@m.dk  Pas123
-  //https://localhost:7181/api/Account/login
 
   return (
     <>

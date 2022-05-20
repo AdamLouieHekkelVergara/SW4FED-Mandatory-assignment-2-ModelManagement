@@ -4,6 +4,7 @@ import { postRequest } from "../../api/postRequest";
 import { Form, Button } from 'react-bootstrap';
 import jwt_decode from 'jwt-decode';
 
+
 function AddExpense({ jobId }) {
   const [date, setDate] = useState("");
   const [text, setText] = useState("");
@@ -17,14 +18,6 @@ function AddExpense({ jobId }) {
 
     var decoded = jwt_decode(token);
     var modelId = decoded.ModelId;
-    for (var property in decoded){
-        if(decoded[property] === "Model"){
-            console.log("Vi har en model!: "+decoded[property]);
-        }
-        else if(decoded[property] === "Manager"){
-            console.log("Vi har en Manager!: "+decoded[property]);
-        }
-   }
     console.log(decoded);
     console.log("modelId: " + modelId + "jobId: " + jobId);
     let object = {
