@@ -35,9 +35,9 @@ const AuthForm = () => {
           withCredentials: true,
         }
       );
-     
+
       let token = await response?.data;
-      console.log(token);      
+      console.log(token);
       localStorage.setItem("token", token.jwt);
       console.log(localStorage.getItem("token"));
       setSuccess(true);
@@ -55,9 +55,7 @@ const AuthForm = () => {
     }
   };
 
-  const logoutHandler = () =>{
-    localStorage.setItem.token(null);
-  }
+  
 
   /*
 async login() {
@@ -91,9 +89,6 @@ return;
     <>
       {success ? (
         <section>
-          <h1>Du er logget ind</h1>
-          <br />
-          
           <Redirect to="/" />
         </section>
       ) : (
@@ -119,7 +114,6 @@ return;
                 value={email}
                 required
                 placeholder="boss@m.dk"
-                
               />
             </div>
             <div className={classes.control}>
