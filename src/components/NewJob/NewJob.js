@@ -18,8 +18,15 @@ function NewJob() {
         postRequest({
             apiEndPoint: "api/Jobs",
             object: object
+        }).then(status => {
+            console.log("status for post request: "+ status);
+            if(status == 201){ // status code for success = 201
+                alert("successfully created Job!")
+            }
+            else {alert('Something bad happened! Status code:' + status)}
+        
         });
-        alert('A job has been created')
+        
     }
 
     const [customer, setCustomer] = useState("");

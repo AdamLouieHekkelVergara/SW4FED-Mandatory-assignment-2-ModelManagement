@@ -1,9 +1,7 @@
 import React from 'react';
-import { FaPlusCircle } from 'react-icons/fa';
 import { useState, useEffect} from "react";
 import { Table } from 'react-bootstrap';
 import { getRequest } from "../../api/getRequest";
-import { postRequest } from "../../api/postRequest";
 
 function ModelList() {
     const [modelList, setModelList] = useState([]);
@@ -18,9 +16,6 @@ function ModelList() {
     }, []);
 
 
-    const handleAdd = (id) => {
-
-    }
 
 
   return (
@@ -32,7 +27,7 @@ function ModelList() {
                 <th>#</th>
                 <th>First Name</th>
                 <th>LastName</th>
-                <th>Tilføj model til job</th>
+                <th>Email</th>
             </tr>
         </thead>
         <tbody>
@@ -41,13 +36,7 @@ function ModelList() {
                     <td>{model.efModelId}</td>
                     <td>{model.firstName}</td>
                     <td>{model.lastName}</td>
-                    <td>
-                    <FaPlusCircle
-                            onClick={() => handleAdd(model.efModelId)}
-                            role="button"
-                            tabIndex="0"
-                        />
-                    </td>
+                    <td>{model.email}</td>
                 </tr>;
             })}
         </tbody>
