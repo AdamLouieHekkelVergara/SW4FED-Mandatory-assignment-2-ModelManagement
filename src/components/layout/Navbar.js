@@ -1,17 +1,15 @@
-
 import { Nav, NavDropdown, NavItem } from "react-bootstrap";
 import { NavLink, useHistory } from "react-router-dom";
 
 import classes from "./Navbar.module.css";
 
 const Navbar = () => {
-    const history = useHistory();
-    function logOut()
-    {
-      localStorage.clear();
-      history.push('/auth')
-      alert('Logged out');
-    }
+  const history = useHistory();
+  function logOut() {
+    localStorage.clear();
+    history.push("/auth");
+    alert("Logged out");
+  }
   return (
     <header className={classes.header}>
       <div className={classes.logo}>MODEL MANAGEMENT</div>
@@ -41,14 +39,14 @@ const Navbar = () => {
             <NavLink to="/new-manager" activeClassName={classes.active}>
               Tilføj Manager
             </NavLink>
-            </li>
-            
+          </li>
+
           <li>
             <NavLink to="/seeJobs" activeClassName={classes.active}>
               Se alle jobs
             </NavLink>
           </li>
-          
+
           <li>
             <NavDropdown title="LogOut">
               <NavDropdown.Item onClick={logOut}> Logout</NavDropdown.Item>
