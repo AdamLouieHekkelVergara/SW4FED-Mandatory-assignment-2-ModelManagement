@@ -7,6 +7,7 @@ import JobModelList from '../components/SeeJobs/JobModelList';
 function JobDetailsPage() {
     var location = useLocation();   
   return (
+      
      <section>     
         <ExpensesList/>
         <JobModelList jobId = {location.state.jobId}/>

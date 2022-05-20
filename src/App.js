@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Routes, Switch, Redirect } from "react-router-dom";
 import AllModels from "./pages/AllModels";
 import ModelDetail from "./pages/ModelDetail";
 import NewModelpage from "./pages/NewModelPage";
@@ -11,8 +11,11 @@ import NewManagerPage from "./pages/NewManagerPage";
 import SeeJobsPage from "./pages/SeeJobsPage";
 import JobAddPropertiesPage from "./pages/JobAddPropertiesPage";
 import JobDetailsPage from "./pages/JobDetailsPage";
+import useAuth from "./hooks/useAuth";
+import RequireAuth from "./components/Auth/RequireAuth";
 
 function App() {
+  const { auth } = useAuth();
   return (
     <Layout>
       <Switch>
@@ -37,9 +40,14 @@ function App() {
         <Route path="/NewJobPage">
           <NewJobPage />
         </Route>
-        <Route path="/new-manager">
-          <NewManagerPage />
+
+        <Route element={<RequireAuth />}>
+          <Route path="/new-manager">
+            <NewManagerPage />
+          </Route>
         </Route>
+
+        
         <Route path="/seeJobs">
           <SeeJobsPage />
         </Route>
