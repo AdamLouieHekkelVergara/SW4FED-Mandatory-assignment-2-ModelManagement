@@ -9,7 +9,8 @@ import HomePage from "./pages/HomePage";
 import NewJobPage from "./pages/NewJobPage";
 import NewManagerPage from "./pages/NewManagerPage";
 import SeeJobsPage from "./pages/SeeJobsPage";
-import ExpensesPage from "./pages/ExpensesPage";
+import JobAddPropertiesPage from "./pages/JobAddPropertiesPage";
+import JobDetailsPage from "./pages/JobDetailsPage";
 
 function App() {
   return (
@@ -42,8 +43,11 @@ function App() {
         <Route path="/seeJobs">
           <SeeJobsPage />
         </Route>
-        <Route path="/ExpensesPage">
-          <ExpensesPage />
+        <Route path="/JobAddPropertiesPage">
+          <JobAddPropertiesPage />
+        </Route>
+        <Route path="/JobDetails">
+          <JobDetailsPage />
         </Route>
       </Switch>
     </Layout>

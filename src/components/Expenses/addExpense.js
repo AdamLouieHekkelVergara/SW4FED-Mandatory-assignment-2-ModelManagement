@@ -13,8 +13,19 @@ function AddExpense({ jobId }) {
     e.preventDefault();
     console.log("Handle submit!");
     var token = localStorage.getItem("token");
+
+
     var decoded = jwt_decode(token);
     var modelId = decoded.ModelId;
+    for (var property in decoded){
+        if(decoded[property] === "Model"){
+            console.log("Vi har en model!: "+decoded[property]);
+        }
+        else if(decoded[property] === "Manager"){
+            console.log("Vi har en Manager!: "+decoded[property]);
+        }
+   }
+    console.log(decoded);
     console.log("modelId: " + modelId + "jobId: " + jobId);
     let object = {
       "modelId": modelId,
@@ -25,8 +36,17 @@ function AddExpense({ jobId }) {
     }
     postRequest({
       apiEndPoint: "api/Expenses",
+      object: object
+    }).then(status => {
+        console.log("status for post request: "+ status);
+        if(status == 201){ // status code for success = 201
+            alert("successfully added expense to Job. \nGo to Info to see more.")
+        }
+        else {alert('Something bad happened! Status code:' + status)}
+    
     });
-    window.location.reload(true);
+    
+    //window.location.reload(true);
   }
 
   return (

@@ -1,6 +1,6 @@
 import React from "react";
 import { useRef, useState, useEffect, useContext } from "react";
-import { FaMinusCircle, FaPlusCircle } from 'react-icons/fa';
+import { FaMinusCircle, FaPlusCircle, FaInfoCircle } from 'react-icons/fa';
 import { Table } from 'react-bootstrap';
 import { getRequest } from "../../api/getRequest";
 import { deleteRequest } from "../../api/deleteRequest";
@@ -20,11 +20,16 @@ function SeeJobs() {
             });
     }, []);
 
-    const handleDetails = (id) => {
-        console.log("Details Clicked! " + id);
-        
-        history.push("/ExpensesPage", { jobId: id });
+    const handleAdd = (id) => {
+        console.log("Add properties Clicked! ");      
+        history.push("/JobAddPropertiesPage", { jobId: id });
     }
+
+    const handleDetails = (id) => {
+        console.log("Details Clicked! ");      
+        history.push("/JobDetails", { jobId: id });
+    }
+
     const handleDelete = (id) => {
         console.log("Delete Clicked! With id: "+id);
         var url = "api/jobs/"+id;
@@ -53,6 +58,7 @@ function SeeJobs() {
                         <th>Days</th>
                         <th></th>
                         <th></th>
+                        <th></th>
 
                     </tr>
                 </thead>
@@ -64,6 +70,12 @@ function SeeJobs() {
                             <td>{item.startDate}</td>
                             <td>{item.location}</td>
                             <td>{item.days}</td>
+                            <td><FaInfoCircle
+                            onClick={() => handleDetails(item.jobId)}
+                            role="button"
+                            tabIndex="0"
+                            
+                            /></td>
                             <td>
                                 <FaMinusCircle
                                     onClick={() => handleDelete(item.jobId)}
@@ -73,7 +85,7 @@ function SeeJobs() {
                             </td>
                             <td>
                             <FaPlusCircle
-                                    onClick={() => handleDetails(item.jobId)}
+                                    onClick={() => handleAdd(item.jobId)}
                                     role="button"
                                     tabIndex="0"
                                 />

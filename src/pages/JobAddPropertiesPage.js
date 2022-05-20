@@ -1,22 +1,20 @@
 import React from 'react'
 import AddExpense from '../components/Expenses/AddExpense'
-import ExpensesList from '../components/Expenses/ExpensesList'
 import { useLocation } from "react-router-dom";
 import AddModelToJob from '../components/NewModel/AddModelToJob';
-import JobModelList from '../components/SeeJobs/JobModelList';
 
 
-function ExpensesPage() {
+function JobAddPropertiesPage() {
     var location = useLocation();   
   return (
-     <section>     
+     <div>     
         <AddExpense jobId = {location.state.jobId}/>
-        <ExpensesList/>
+
         <AddModelToJob jobId = {location.state.jobId}/>
-        <JobModelList jobId = {location.state.jobId}/>
-    </section> 
+    </div> 
 
   )
 }
 
-export default ExpensesPage
+
+export default JobAddPropertiesPage
