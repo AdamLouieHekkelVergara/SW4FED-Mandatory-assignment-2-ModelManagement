@@ -1,4 +1,5 @@
 import classes from "./AuthForm.module.css";
+import { Redirect } from "react-router-dom";
 import { useRef, useState, useEffect, useContext } from "react";
 import AuthContext from "../../context/AuthProvider";
 import axios from "../../api/axios";
@@ -34,9 +35,9 @@ const AuthForm = () => {
           withCredentials: true,
         }
       );
-     
+
       let token = await response?.data;
-      console.log(token);      
+      console.log(token);
       localStorage.setItem("token", token.jwt);
       console.log(localStorage.getItem("token"));
       setSuccess(true);
@@ -53,6 +54,8 @@ const AuthForm = () => {
       errRef.current.focus();
     }
   };
+
+  
 
   /*
 async login() {
@@ -86,11 +89,7 @@ return;
     <>
       {success ? (
         <section>
-          <h1>Du er logget ind</h1>
-          <br />
-          <p>
-            <a href="/">Gå til forsiden</a>
-          </p>
+          <Redirect to="/" />
         </section>
       ) : (
         <section className={classes.auth}>
