@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route, Routes, Switch, Redirect } from "react-router-dom";
+import { Route} from "react-router-dom";
 import AllModels from "./pages/AllModels";
 import ModelDetail from "./pages/ModelDetail";
 import NewModelpage from "./pages/NewModelPage";
@@ -11,43 +11,44 @@ import NewManagerPage from "./pages/NewManagerPage";
 import SeeJobsPage from "./pages/SeeJobsPage";
 import JobAddPropertiesPage from "./pages/JobAddPropertiesPage";
 import JobDetailsPage from "./pages/JobDetailsPage";
-import useAuth from "./hooks/useAuth";
 import RequireAuth from "./components/Auth/RequireAuth";
+import RequireManagerRole from "./components/Auth/RequireManagerRole";
 
 function App() {
-  const { auth } = useAuth();
   return (
+
     <Layout>
-      <Switch>
-        <Route path="/" exact>
-          <HomePage />
-        </Route>
-        <Route path="/auth">
-          <AuthPage />
-        </Route>
-        <Route path="/" exact>
-          <Redirect to="/models" />
-        </Route>
+      <Route path="/auth">
+        <AuthPage />
+      </Route>
+      <Route path="/" exact>
+        <HomePage />
+      </Route>
+
+      <RequireAuth path="/">
         <Route path="/models" exact>
           <AllModels />
         </Route>
         <Route path="/models/:modelId">
           <ModelDetail />
         </Route>
-        <Route path="/new-model">
-          <NewModelpage />
-        </Route>
-        <Route path="/NewJobPage">
-          <NewJobPage />
-        </Route>
+        <RequireManagerRole parth="/monew-model">
+          <Route path="/new-model">
+            <NewModelpage />
+          </Route>
+        </RequireManagerRole>
+        <RequireManagerRole parth="/NewJobPage">
+          <Route path="/NewJobPage">
+            <NewJobPage />
+          </Route>
+        </RequireManagerRole>
 
-        <Route element={<RequireAuth />}>
+        <RequireManagerRole path="/new-manager">
           <Route path="/new-manager">
             <NewManagerPage />
           </Route>
-        </Route>
+        </RequireManagerRole>
 
-        
         <Route path="/seeJobs">
           <SeeJobsPage />
         </Route>
@@ -57,8 +58,9 @@ function App() {
         <Route path="/JobDetails">
           <JobDetailsPage />
         </Route>
-      </Switch>
+      </RequireAuth>
     </Layout>
+
   );
 }
 

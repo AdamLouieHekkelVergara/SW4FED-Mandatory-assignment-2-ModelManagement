@@ -32,7 +32,7 @@ function AddExpense({ jobId }) {
       object: object
     }).then(status => {
         console.log("status for post request: "+ status);
-        if(status == 201){ // status code for success = 201
+        if(status === 201){ // status code for success = 201
             alert("successfully added expense to Job. \nGo to Info to see more.")
         }
         else {alert('Something bad happened! Status code:' + status)}

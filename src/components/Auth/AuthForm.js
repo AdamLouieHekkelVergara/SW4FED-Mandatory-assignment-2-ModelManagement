@@ -2,13 +2,8 @@ import classes from "./AuthForm.module.css";
 import { Redirect } from "react-router-dom";
 import { useRef, useState, useEffect} from "react";
 import { loginRequest } from "../../api/loginRequest";
-import useAuth from "../../hooks/useAuth";
-
-
-const LOGIN_URL = "/api/Account/login";
 
 const AuthForm = () => {
-  const { setAuth } = useAuth();
   const userRef = useRef();
   const errRef = useRef();
 
@@ -33,13 +28,10 @@ const AuthForm = () => {
       password: password
     }
 
-    var response = loginRequest({
+    loginRequest({
       object: object
     }).then(response => {
       if (response.ok) {
-        const token = localStorage.getItem("token");
-        const role = localStorage.getItem("role")
-        setAuth({email, password, role, token});
         setSuccess(true);
       }
       else if (response.status === 400) {

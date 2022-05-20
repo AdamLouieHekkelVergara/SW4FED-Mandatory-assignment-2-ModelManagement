@@ -26,7 +26,7 @@ function AddModelToJob({jobId}) {
           apiEndPoint: postModelToJob_URL+id
         }).then(status => {
             console.log("status for post request: "+ status);
-            if(status == 201){ // status code for success = 201
+            if(status === 201){ // status code for success = 201
                 console.log("blah");
                 alert("successfully added model to Job. \nGo to Info to see more.")
             }

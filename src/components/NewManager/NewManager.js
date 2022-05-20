@@ -1,12 +1,10 @@
 import React from "react";
-import axios from "../../api/axios";
-import { useRef, useState, useEffect, useContext } from "react";
+import { useState } from "react";
+import { postRequest } from "../../api/postRequest";
 
 import classes from "./NewManager.module.css";
 const Create_Manager_URL = "api/managers"
 const NewManager = () => {
-  const [errMsg, setErrMsg] = useState("");
-
   const [firstName, setFirstname] = useState("");
   const [lastName, setLastname] = useState("");
   const [email, setEmail] = useState("");
@@ -15,30 +13,16 @@ const NewManager = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const response = await axios.post(
-        Create_Manager_URL,
-        JSON.stringify(
-            {
-                firstName: firstName,
-                lastName: lastName,
-                email: email,
-                password: password
-              }
-        ),
-        {
-          headers: { 
-            'Authorization': 'Bearer ' + localStorage.getItem("token"),
-              "Content-Type": "application/json" },
-          withCredentials: true,
-        }
-      );
-      console.log(JSON.stringify(response?.data));
-      alert('Manager has been added');
-
-    } catch (err) {     
-     
+    var object = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password
     }
+
+    postRequest({object : object, apiEndPoint: Create_Manager_URL});
+    alert('Manager has been added');
+
   };
 
   return (
@@ -53,7 +37,7 @@ const NewManager = () => {
             autoComplete="on"
             onChange={(e) => setFirstname(e.target.value)}
             value={firstName}
-            
+
           />
         </div>
 
@@ -65,7 +49,7 @@ const NewManager = () => {
             autoComplete="on"
             onChange={(e) => setLastname(e.target.value)}
             value={lastName}
-            
+
           />
         </div>
         <div className={classes.control}>
@@ -76,7 +60,7 @@ const NewManager = () => {
             autoComplete="on"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
-            
+
           />
         </div>
         <div className={classes.control}>
@@ -87,14 +71,14 @@ const NewManager = () => {
             autoComplete="on"
             onChange={(e) => setPwd(e.target.value)}
             value={password}
-            
+
           />
         </div>
-        
+
         <div className={classes.actions}>
-                <button variant="primary" type="submit">
-                    Opret
-                </button>
+          <button variant="primary" type="submit">
+            Opret
+          </button>
         </div>
       </form>
     </section>

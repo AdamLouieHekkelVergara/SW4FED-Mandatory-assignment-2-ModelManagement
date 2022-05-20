@@ -5,7 +5,8 @@ export async function postRequest({ apiEndPoint, object }) {
     console.log("\n");
     var postBody = null;
     if(object !== undefined){
-        console.log("object is: " + object);
+        console.log("object is: ");
+        console.log(object)
         postBody = JSON.stringify(object)
     }
     

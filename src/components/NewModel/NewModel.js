@@ -1,7 +1,7 @@
 import React from "react";
-import axios from "../../api/axios";
 import { useState} from "react";
 import classes from "./NewModel.module.css";
+import { postRequest } from "../../api/postRequest";
 
 const Create_Model_URL = "api/models"
 const NewModel = () => {
@@ -26,43 +26,32 @@ const NewModel = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const response = await axios.post(
-        Create_Model_URL,
-        JSON.stringify(
-            {
-                firstName: firstName,
-                lastName: lastName,
-                email: email,
-                phoneNo: phonenumber,
-                addresLine1: address1,
-                addresLine2: address2,
-                zip: zip,
-                city: city,
-                country: country,
-                birthDate: birthday,
-                nationality: nationality,
-                height: height,
-                shoeSize: shoesize,
-                hairColor: haircolor,
-                eyeColor: eyecolor,
-                comments: comments,
-                password: password
-              }
-        ),
-        {
-          headers: { 
-            'Authorization': 'Bearer ' + localStorage.getItem("token"),
-              "Content-Type": "application/json" },
-          withCredentials: true,
-        }
-      );
-      console.log(JSON.stringify(response?.data));
+  
+    var object = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      phoneNo: phonenumber,
+      addresLine1: address1,
+      addresLine2: address2,
+      zip: zip,
+      city: city,
+      country: country,
+      birthDate: birthday,
+      nationality: nationality,
+      height: height,
+      shoeSize: shoesize,
+      hairColor: haircolor,
+      eyeColor: eyecolor,
+      comments: comments,
+      password: password
+
+    };
+    
+    postRequest({object : object, apiEndPoint: Create_Model_URL})
       alert('Adding a model was successfull');
 
-    } catch (err) {     
-     
-    }
+
   };
 
   return (

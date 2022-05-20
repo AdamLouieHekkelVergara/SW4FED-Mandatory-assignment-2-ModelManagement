@@ -1,14 +1,14 @@
 import React from 'react'
+import {Redirect, Route} from 'react-router-dom'
 
-import useAuth from "./hooks/useAuth";
-import {Outlet} from 'react-router-dom'
-
-function RequireAuth() {
-    const { auth } = useAuth();
+function RequireAuth({children, ...rest}) {
 
   return (
-    auth?.token ?  <Outlet/>
-    : <Navigate to = "/auth" />
+    <Route {... rest} render={()=> {
+      var token = localStorage.getItem("token")  
+      return token ? children 
+      : <Redirect to = '/Auth' />
+    }}/>
 
   )
 }

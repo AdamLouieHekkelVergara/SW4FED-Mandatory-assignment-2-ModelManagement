@@ -20,8 +20,14 @@ function NewJob() {
             object: object
         }).then(status => {
             console.log("status for post request: "+ status);
-            if(status == 201){ // status code for success = 201
+            if(status === 201){ // status code for success = 201
                 alert("successfully created Job!")
+                setCustomer('');
+                setDays(0);
+                setLocation('');
+                setStartDate('')
+                setComments('');
+
             }
             else {alert('Something bad happened! Status code:' + status)}
         
@@ -45,7 +51,6 @@ function NewJob() {
                         <Form.Label>Customer</Form.Label>
                         <Form.Control
                             autoFocus
-                            id="customer"
                             value={customer}
                             onChange={(e) => setCustomer(e.target.value)}
                             placeholder="Peter Jakobsen" />
@@ -56,7 +61,6 @@ function NewJob() {
                     <Form.Label>Location</Form.Label>
                     <Form.Control
                         type="text"
-                        id="location"
                         autoComplete="on"
                         placeholder="8660 Skanderborg"
                         onChange={(e) => setLocation(e.target.value)}
@@ -68,7 +72,6 @@ function NewJob() {
                         <Form.Label>Date</Form.Label>
                         <Form.Control
                             type="date"
-                            id="startDate"
                             autoComplete="on"
                             onChange={(e) => setStartDate(e.target.value)}
                             value={startDate} />
@@ -77,7 +80,6 @@ function NewJob() {
                         <Form.Label>Days</Form.Label>
                         <Form.Control
                             type="number"
-                            id="days"
                             autoComplete="on"
                             onChange={(e) => setDays(e.target.value)}
                             value={days} />
@@ -87,7 +89,6 @@ function NewJob() {
                     <Form.Label>Comments</Form.Label>
                     <Form.Control
                         type="text"
-                        id="comments"
                         autoComplete="on"
                         onChange={(e) => setComments(e.target.value)}
                         value={comments} />
