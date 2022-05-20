@@ -5,13 +5,12 @@ import { NavLink, useHistory } from "react-router-dom";
 import classes from "./Navbar.module.css";
 
 const Navbar = () => {
-    const history = useHistory();
-    function logOut()
-    {
-      localStorage.clear();
-      history.push('/auth')
-      alert('Logged out');
-    }
+  const history = useHistory();
+  function logOut() {
+    localStorage.clear();
+    history.push('/auth')
+    alert('Logged out');
+  }
   return (
     <header className={classes.header}>
       <div className={classes.logo}>MODEL MANAGEMENT</div>
@@ -27,28 +26,31 @@ const Navbar = () => {
               Alle modeler
             </NavLink>
           </li>
-          <li>
-            <NavLink to="/new-model" activeClassName={classes.active}>
-              Tilføj Model
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/NewJobPage" activeClassName={classes.active}>
-              Tilføj nyt job
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/new-manager" activeClassName={classes.active}>
-              Tilføj Manager
-            </NavLink>
-            </li>
-            
+
           <li>
             <NavLink to="/seeJobs" activeClassName={classes.active}>
               Se alle jobs
             </NavLink>
           </li>
-          
+          <li>
+            <NavDropdown title="Tilføj">
+              <NavDropdown.Item>
+                <NavLink to="/NewJobPage" activeClassName={classes.active}>
+                  Tilføj nyt job
+                </NavLink>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <NavLink to="/new-model" activeClassName={classes.active}>
+                  Tilføj Model
+                </NavLink>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <NavLink to="/new-manager" activeClassName={classes.active}>
+                  Tilføj Manager
+                </NavLink>
+              </NavDropdown.Item>
+            </NavDropdown>
+          </li>
           <li>
             <NavDropdown title="LogOut">
               <NavDropdown.Item onClick={logOut}> Logout</NavDropdown.Item>
