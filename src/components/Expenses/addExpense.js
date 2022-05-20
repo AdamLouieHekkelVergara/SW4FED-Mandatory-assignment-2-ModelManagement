@@ -4,7 +4,7 @@ import { postRequest } from "../../api/postRequest";
 import { Form, Button } from 'react-bootstrap';
 import jwt_decode from 'jwt-decode';
 
-function AddExpense({jobId}) {
+function AddExpense({ jobId }) {
   const [date, setDate] = useState("");
   const [text, setText] = useState("");
   const [amount, setAmount] = useState(0);
@@ -15,19 +15,19 @@ function AddExpense({jobId}) {
     var token = localStorage.getItem("token");
     var decoded = jwt_decode(token);
     var modelId = decoded.ModelId;
-    console.log("modelId: "+ modelId + "jobId: "+ jobId);
-         let object = {
-          "modelId": modelId,
-          "jobId": jobId,
-          "date": date,
-          "text": text,
-          "amount": amount
-        }
-        postRequest({
-          apiEndPoint: "api/Expenses",
-          object: object
-        });
-        window.location.reload(true); 
+    console.log("modelId: " + modelId + "jobId: " + jobId);
+    let object = {
+      "modelId": modelId,
+      "jobId": jobId,
+      "date": date,
+      "text": text,
+      "amount": amount
+    }
+    postRequest({
+      apiEndPoint: "api/Expenses",
+      object: object
+    });
+    window.location.reload(true);
   }
 
   return (
@@ -46,6 +46,14 @@ function AddExpense({jobId}) {
               onChange={(e) => setAmount(e.target.value)}
               value={amount}
             />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="my_multiselect_field">
+            <Form.Label>My multiselect (hold ctrl for multi select) </Form.Label>
+            <Form.Control as="select" multiple={true} >
+              <option value="field1">Field 1</option>
+              <option value="field2">Field 2</option>
+              <option value="field3">Field 3</option>
+            </Form.Control>
           </Form.Group>
 
 
