@@ -9,7 +9,7 @@ const Navbar = () => {
     function logOut()
     {
       localStorage.clear();
-      history.push('/')
+      history.push('/auth')
       alert('Logged out');
     }
   return (

@@ -113,7 +113,6 @@ return;
                 onChange={(e) => setUser(e.target.value)}
                 value={email}
                 required
-                placeholder="boss@m.dk"
               />
             </div>
             <div className={classes.control}>
@@ -124,7 +123,6 @@ return;
                 onChange={(e) => setPwd(e.target.value)}
                 value={password}
                 required
-                placeholder="asdfQWER"
               />
             </div>
             <div className={classes.actions}>
