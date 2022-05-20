@@ -48,11 +48,7 @@ const Navbar = () => {
               Se alle jobs
             </NavLink>
           </li>
-          <li>
-            <nav name='LogOut' onClick={logOut} activeClassName="active">
-              LogOut
-            </nav>
-          </li>
+          
           <li>
             <NavDropdown title="LogOut">
               <NavDropdown.Item onClick={logOut}> Logout</NavDropdown.Item>
