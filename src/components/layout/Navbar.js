@@ -1,8 +1,17 @@
-import { Button } from "bootstrap";
-import { NavLink } from "react-router-dom";
+
+import { Nav, NavDropdown, NavItem } from "react-bootstrap";
+import { NavLink, useHistory } from "react-router-dom";
+
 import classes from "./Navbar.module.css";
 
 const Navbar = () => {
+    const history = useHistory();
+    function logOut()
+    {
+      localStorage.clear();
+      history.push('/')
+      alert('Logged out');
+    }
   return (
     <header className={classes.header}>
       <div className={classes.logo}>MODEL MANAGEMENT</div>
@@ -11,11 +20,6 @@ const Navbar = () => {
           <li>
             <NavLink to="/auth" activeClassName={classes.active}>
               Log ind
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/auth" activeClassName={classes.active}>
-              Log ud
             </NavLink>
           </li>
           <li>
@@ -43,6 +47,16 @@ const Navbar = () => {
             <NavLink to="/seeJobs" activeClassName={classes.active}>
               Se alle jobs
             </NavLink>
+          </li>
+          <li>
+            <nav name='LogOut' onClick={logOut} activeClassName="active">
+              LogOut
+            </nav>
+          </li>
+          <li>
+            <NavDropdown title="LogOut">
+              <NavDropdown.Item onClick={logOut}> Logout</NavDropdown.Item>
+            </NavDropdown>
           </li>
         </ul>
       </nav>
